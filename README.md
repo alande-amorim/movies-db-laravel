@@ -11,7 +11,7 @@
 4. Open up on the browser.
 
 ```
-$ git clone 
+$ git clone https://github.com/alande-amorim/movies-db-laravel.git
 $ composer install
 $ php artisan serve
 ```
