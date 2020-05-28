@@ -4,19 +4,26 @@
     <!-- movie details -->
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
-            <img src="https://via.placeholder.com/600x900" alt="Parasite" class="w-64 md:w-96">
+            <img src="https://image.tmdb.org/t/p/w500{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}" class="w-64 md:w-96">
             <div class="mt-8 md:ml-24 md:mt-0">
-                <h2 class="text-4xl font-semibold">Parasite (2019)</h2>
+                <h2 class="text-4xl font-semibold">{{ $movie['title'] }}  {{ \Carbon\Carbon::parse($movie['release_date'])->format('(Y)') }}</h2>
                 <div class="flex items-center flex-wrap text-gray-400 text-sm">
                     <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
-                    <span class="ml-1">85%</span>
+                    <span class="ml-1">{{ $movie['vote_average']*10 }}%</span>
                     <span class="mx-2">|</span>
-                    <span>Feb 20, 2020</span>
+                    <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d, Y') }}</span>
                     <span class="mx-2">|</span>
-                    <span class="text-gray-400 text-sm">Action, Thriller, Comedy</span>
+                    <span class="text-gray-400 text-sm">
+                        @foreach($movie['genres'] as $genre)
+                            <a href="#" class="text-gray-400 hover:text-gray-200 hover:underline">{{ $genre['name'] }}</a>@if(!$loop->last), @endif
+                        @endforeach
+
+                    </span>
                 </div>
 
-                <p class="text-gray-300 mt-8">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate expedita nam nisi? Fuga tempora facilis assumenda, numquam eaque omnis qui sint sed, nemo dolore sapiente, nam libero incidunt aliquam. Explicabo?</p>
+                <p class="text-gray-300 mt-8">
+                    {{ $movie['overview'] }}
+                </p>
 
                 <div class="mt-12">
                     <h4 class="text-white font-semibold">Featured Cast</h4>
@@ -72,7 +79,7 @@
     <!-- movie images -->
     <div class="movie-cast border-b border-gray-800">
         <div class="container mx-auto px-4 py-16">
-            <h2 class="text-4xl font-semibold">Images</h2>
+            <h2 class="text-4xl font-semibold">Scenes</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
