@@ -17,7 +17,6 @@
                         @foreach($movie['genres'] as $genre)
                             <a href="#" class="text-gray-400 hover:text-gray-200 hover:underline">{{ $genre['name'] }}</a>@if(!$loop->last), @endif
                         @endforeach
-
                     </span>
                 </div>
 
@@ -28,24 +27,26 @@
                 <div class="mt-12">
                     <h4 class="text-white font-semibold">Featured Cast</h4>
                     <div class="flex mt-4">
-                        <div>
-                            <div>Bong Joon-ho</div>
-                            <div class="text-sm text-gray-400">Screenplay, Director, Story</div>
-                        </div>
-                        <div class="ml-8">
-                            <div>Han Joon-ho</div>
-                            <div class="text-sm text-gray-400">Screenplay</div>
-                        </div>
+                        @foreach($movie['credits']['crew'] as $crew)
+                            @if($loop->index < 2)
+                                <div class="mr-8">
+                                    <div>{{ $crew['name'] }}</div>
+                                    <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
 
-                <div class="mt-12">
-                    <button class="flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
-                        <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                @if($movie['videos']['results'] > 0)
+                    <div class="mt-12">
+                        <a href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}" target="_blank" class="{{ $movie['videos'] ? '' : 'opacity-50 cursor-not-allowed' }} flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
+                            <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
 
-                        <span class="ml-2">Watch Trailer</span>
-                    </button>
-                </div>
+                            <span class="ml-2">Watch Trailer</span>
+                        </a>
+                    </div>
+                @endif
 
             </div>
         </div>
@@ -59,17 +60,19 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
 
-                @for ($i = 0; $i < 5; $i++)
-                    <div class="mt-8">
-                        <a href="#">
-                            <img src="https://via.placeholder.com/600x900" alt="Parasite" class="hover:opacity-75 transition ease-in-out duration-150">
-                        </a>
-                        <div class="mt-2">
-                            <a href="#" class="text-lg mt-2 hover:text-gray-300">Character name</a>
-                            <p class="text-gray-400 text-sm">Actor name</p>
+                @foreach($movie['credits']['cast'] as $cast)
+                    @if($loop->index < 5)
+                        <div class="mt-8">
+                            <a href="#">
+                                <img src="https://image.tmdb.org/t/p/w300{{ $cast['profile_path'] }}" alt="{{ $cast['name'] }}" class="hover:opacity-75 transition ease-in-out duration-150">
+                            </a>
+                            <div class="mt-2">
+                                <a href="#" class="text-lg mt-2 hover:text-gray-300">{{ $cast['character'] }}</a>
+                                <p class="text-gray-400 text-sm">{{ $cast['name'] }}</p>
+                            </div>
                         </div>
-                    </div>
-                @endfor
+                    @endif
+                @endforeach
 
             </div>
         </div>
@@ -83,13 +86,15 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
-                @for ($i = 0; $i < 6; $i++)
-                    <div class="mt-8">
-                        <a href="#">
-                            <img src="https://via.placeholder.com/600x400" alt="Parasite" class="hover:opacity-75 transition ease-in-out duration-150">
-                        </a>
-                    </div>
-                @endfor
+                @foreach ($movie['images']['backdrops'] as $image)
+                    @if($loop->index < 9)
+                        <div class="mt-8">
+                            <a href="https://image.tmdb.org/t/p/original{{ $image['file_path'] }}">
+                                <img src="https://image.tmdb.org/t/p/w500{{ $image['file_path'] }}" alt="Parasite" class="hover:opacity-75 transition ease-in-out duration-150">
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
 
             </div>
         </div>
