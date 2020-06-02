@@ -8,7 +8,7 @@
 
     @if(strlen($search) > 2)
         @if($results->count() > 0)
-            <ul id="search-results-list" class="absolute bg-gray-800 rounded w-64 mt-2 text-sm overflow-y-auto max-h-1/3">
+            <ul id="search-results-list" class="absolute bg-gray-800 rounded w-64 mt-2 text-sm overflow-y-auto max-h-1/3 z-10">
                 @foreach($results as $movie)
                 <li class="border-b border-gray-700">
                     <a href="{{ route('movies.show', $movie['id']) }}" class="block hover:bg-gray-700 p-3 flex items-center">
