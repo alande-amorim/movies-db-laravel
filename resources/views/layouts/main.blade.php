@@ -28,7 +28,7 @@
                     <a href="#" class="hover:text-gray-300">TV Shows</a>
                 </li>
                 <li class="md:ml-6">
-                    <a href="#" class="hover:text-gray-300">Actors</a>
+                    <a href="{{ route('actors.index') }}" class="hover:text-gray-300">Actors</a>
                 </li>
             </ul>
 
@@ -49,5 +49,7 @@
     <footer class="border-t border-gray-800 py-6"></footer>
 
     <livewire:scripts>
+
+    @yield('scripts')
 </body>
 </html>
