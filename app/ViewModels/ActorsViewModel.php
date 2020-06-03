@@ -40,7 +40,7 @@ class ActorsViewModel extends ViewModel
             ])->only([
                 'id', 'name', 'movies', 'profile_path'
             ]);
-        })->dump();
+        });
     }
 
     public function previous()
