@@ -29,19 +29,19 @@
                 class="absolute bg-gray-800 rounded w-64 mt-2 text-sm overflow-y-auto max-h-1/3 z-10"
                 x-show.transition.opacity="isOpen"
             >
-                @foreach($results as $movie)
+                @foreach($results as $item)
                     <li class="border-b border-gray-700">
                         <a
-                            href="{{ route('movies.show', $movie['id']) }}"
+                            href="{{ $item['url'] }}"
                             class="block hover:bg-gray-700 p-3 flex items-center"
                             @if ($loop->last) @keydown.tab.exact="isOpen = false" @endif
                         >
-                            @if($movie['poster_path'])
-                                <img src="https://image.tmdb.org/t/p/w92/{{ $movie['poster_path'] }}" alt="poster" class="w-8">
-                            @else
-                                <img src="https://via.placeholder.com/50x75" alt="poster" class="w-8">
-                            @endif
-                            <span class="ml-2">{{ $movie['original_title'] }} {{ \Carbon\Carbon::parse($movie['release_date'])->format('(Y)') }}</span>
+
+                            <img src="{{ $item['image'] }}" alt="poster" class="w-8">
+                            <div class="ml-2 flex flex-col">
+                                <span class="text-xs text-gray-500">{{ $item['type'] }}</span>
+                                <span>{{ $item['title'] }}</span>
+                            </div>
                         </a>
                     </li>
                 @endforeach

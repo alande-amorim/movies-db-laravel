@@ -37,7 +37,7 @@
 
                 <div class="md:ml-4 mt-3 md:mt-0">
                     <a href="#">
-                        <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=ShirtVNeck&clotheColor=Black&eyeType=Squint&eyebrowType=UpDown&mouthType=Serious&skinColor=Light" alt="avatar" class="rounded-full w-8 h-8">
+                        <img src="https://ui-avatars.com/api/?size=32&name=AA" alt="avatar" class="rounded-full w-8 h-8">
                     </a>
                 </div>
             </div>

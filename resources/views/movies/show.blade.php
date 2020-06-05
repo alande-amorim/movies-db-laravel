@@ -25,7 +25,7 @@
                     <div class="flex mt-4">
                         @foreach($movie['crew'] as $crew)
                             <div class="mr-8">
-                                <div>{{ $crew['name'] }}</div>
+                                <a href="{{ route('actors.show', $crew['id']) }}" class="hover:text-gray-300">{{ $crew['name'] }}</a>
                                 <div class="text-sm text-gray-400">{{ $crew['job'] }}</div>
                             </div>
                         @endforeach
@@ -151,5 +151,4 @@
         </div>
     </div>
     <!-- end movie images -->
-
 @endsection

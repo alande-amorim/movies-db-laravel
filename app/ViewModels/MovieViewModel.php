@@ -21,9 +21,13 @@ class MovieViewModel extends ViewModel
             return sprintf('<a href="#" class="genre text-gray-400 hover:text-gray-200 hover:underline">%s</a>', $item['name']);
         })->implode(', ');
 
+        $posterPath = $this->movie['poster_path']
+            ? 'https://image.tmdb.org/t/p/w342' . $this->movie['poster_path']
+            : 'https://via.placeholder.com/384x576';
+
         return collect($this->movie)->merge([
             'title' => $this->movie['title'] . Carbon::parse($this->movie['release_date'])->format(' (Y)'),
-            'poster_path' => 'https://image.tmdb.org/t/p/w500' . $this->movie['poster_path'],
+            'poster_path' => $posterPath,
             'vote_average' => $this->movie['vote_average'] * 10 . '%',
             'release_date' => Carbon::parse($this->movie['release_date'])->format('M d, Y'),
             'genres' => $genresFormatted,
