@@ -24,11 +24,11 @@ class ViewTvTest extends TestCase
         $response = $this->get(route('tv.index'));
 
         $response->assertSuccessful();
-        $response->assertSee('Popular Shows');
+        $response->assertSee('TV - Popular');
         $response->assertSee('The Simpsons');
         $response->assertSee('Animation');
         $response->assertSee('Comedy');
-        $response->assertSee('Top Rated Shows');
+        $response->assertSee('TV - Top Rated');
         $response->assertSee('Breaking Bad');
     }
 

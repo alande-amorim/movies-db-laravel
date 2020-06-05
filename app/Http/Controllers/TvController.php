@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ViewModels\TvListViewModel;
 use App\ViewModels\TvShowViewModel;
 use App\ViewModels\TvViewModel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class TvController extends Controller
@@ -49,6 +49,32 @@ class TvController extends Controller
         return view(
             'tv.show',
             new TvShowViewModel($tvshow)
+        );
+    }
+
+    /**
+     * @param string $type
+     * @return \Illuminate\Http\Response
+     */
+    public function list($type)
+    {
+        if ($type === 'popular') {
+            $tvShows = Http::withToken(config('services.tmdb.token'))
+                ->get('https://api.themoviedb.org/3/tv/popular')
+                ->json()['results'];
+        } else {
+            $tvShows = Http::withToken(config('services.tmdb.token'))
+                ->get('https://api.themoviedb.org/3/tv/top_rated')
+                ->json()['results'];
+        }
+
+        $genres =  Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/genre/tv/list')
+            ->json()['genres'];
+
+        return view(
+            'tv.list',
+            new TvListViewModel($tvShows, $genres, $type)
         );
     }
 }

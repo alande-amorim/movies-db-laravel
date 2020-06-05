@@ -36,7 +36,7 @@ class ViewMoviesTest extends TestCase
         $response = $this->get(route('movies.index'));
 
         $response->assertStatus(200);
-        $response->assertSee('Popular Movies');
+        $response->assertSee('Movies - Popular');
         $response->assertSee('Test Fake Movie');
         $response->assertSee('Drama');
         $response->assertSee('Science Fiction');
@@ -45,7 +45,7 @@ class ViewMoviesTest extends TestCase
         // $html = $response->getContent();
         // $this->assertEquals(1, preg_match('/Drama, *Science Fiction/', $html), 'Page doenst contain expected genres');
 
-        $response->assertSee('Now Playing');
+        $response->assertSee('Movies - Now Playing');
         $response->assertSee('Test Fake Movie 2');
     }
 
